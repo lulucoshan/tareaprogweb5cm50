@@ -1,0 +1,66 @@
+CREATE DATABASE el_esfuerzo;
+USE el_esfuerzo;
+
+DROP TABLE productos;
+
+CREATE TABLE productos(id_producto int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+nombre varchar(20),
+precio float(6,2),
+id_categoria1 int,
+descripcion varchar(30),
+CONSTRAINT fk_categoria FOREIGN KEY (id_categoria1)
+REFERENCES categorias(id_categoria)
+);
+
+CREATE TABLE categorias(id_categoria int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+categoria varchar(10)
+)
+
+SELECT * FROM productos;
+SELECT * FROM categorias;
+
+SELECT nombre, precio, categoria, descripcion FROM productos;
+
+insert into categorias(categoria)
+values ("bebida"),
+("pan"),
+("botana"),
+("lacteo"),
+("abarrotes"),
+("enlatado"),
+("limpieza"),
+("higiene");
+
+
+insert into productos (nombre, precio, id_categoria1, descripcion)
+values ("coca cola 500ml", 20.50, 1, "cocacola 500ml de plastico"),
+("Pepsi 600ml", 19.00, 1, "Pepsi 600ml de plástico"),
+("Agua Bonafont 1L", 15.00, 1, "Agua Bonafont 1 litro"),
+("Gansito Marinela", 16.00, 2, "Pastelito relleno"),
+("Sabritas Clásicas", 18.00, 3, "Papas fritas"),
+("Doritos Nacho", 18.50, 3, "sabor queso nacho"),
+("Cheetos Flaming Hot", 17.50, 3, "cheetos chilosos"),
+("Pan Bimbo Blanco", 42.00, 2, "Pan blanco grande"),
+("Leche Lala 1L", 28.00, 4, "Leche entera Lala"),
+("Huevos San Juan 12p", 42.00, 5, "Docena de huevos blancos"),
+("Atún Dolores", 22.00, 6, "Atún en agua Dolores"),
+("Frijoles Isadora R", 25.00, 6, "Frijoles refritos negros"),
+("Arroz Verde Valle", 38.00, 5, "Arroz de grano largo 1kg"),
+("Aceite Nutrioli 1L", 48.00, 5, "Aceite vegetal"),
+("Azúcar Zulka 1kg", 36.00, 5, "Azúcar estándar"),
+("Sal La Fina 1kg", 18.00, 5, "Sal refinada"),
+("Cloralex 1L", 25.50, 7, "Blanqueador y desinfectante"),
+("Papel Regio", 32.00, 8, "Paquete de 4 rollos doble hoja"),
+("Jabón Zote Rosa", 14.00, 7, "Jabón para lavar ropa Zote"),
+("Café Nescafé 50g", 62.00, 5, "Café soluble");
+
+insert into categorias (categoria)
+values ("limpieza"),
+("higiene");
+
+select productos.nombre, productos.precio, categorias.categoria AS nombre_categoria, productos.descripcion
+from productos
+join categorias on productos.id_categoria1 = categorias.id_categoria;
+
+
+
