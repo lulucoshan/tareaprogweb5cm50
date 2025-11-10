@@ -29,6 +29,8 @@ if($_COOKIE["session"] === "activa"){
                 <input type="text" name="usuario" required><br>
                 <label>contraseña</label><br>
                 <input type="password" name="contrasenia" required><br>
+                <input type="checkbox" name="recuerdame">
+                <label>recuerdame</label><br>
                 <input type="submit" value="iniciar sesión"><br>
             </form>
         </div>

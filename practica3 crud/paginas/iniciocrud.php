@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION["id"])){
+  header("Location: iniSesCrud.php");
+  exit();
+}
+
 ini_set('display-errors', E_ALL);
 
 include "../config/basededatos.php";
@@ -27,7 +33,6 @@ $datos = seleccionar("SELECT productos.id_producto, productos.nombre, productos.
       <table class="display" id="tablaproductos">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Nombre</th>
             <th>Precio</th>
             <th>Categoria</th>
@@ -38,7 +43,6 @@ $datos = seleccionar("SELECT productos.id_producto, productos.nombre, productos.
         <tbody>
           <?php foreach($datos as $dato):?>
           <tr>
-            <td><?php echo $dato[0]?></td>
             <td><?php echo $dato[1]?></td>
             <td><?php echo $dato[2]?></td>
             <td><?php echo $dato[3]?></td>
@@ -55,6 +59,7 @@ $datos = seleccionar("SELECT productos.id_producto, productos.nombre, productos.
         </tbody>
       </table>
   </body>
+  <a href="cerrarSes.php" class="btn btn-danger mx-1">cerrar sesión</a>
   <script src="../js/bootstrap.bundle.min.js"></script>
   <script src="../DataTables/datatables.js"></script>
   <script> $(document).ready(function (){
